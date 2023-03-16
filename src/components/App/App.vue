@@ -1,13 +1,13 @@
 <template>
   <div class="app">
-    <app-header :message="'Share'"/>
+    <app-header />
 
     <app-footer :content="this.content"/>
   </div>
 </template>
 
 <script lang="ts">
-import AppFooter from './AppFooter.vue'
+import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
 
 export default {

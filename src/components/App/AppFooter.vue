@@ -24,6 +24,5 @@ export default {
 	flex-direction: row;
 	align-items: center;
 	text-align: center;
-	color: #eee;
 }
 </style>
