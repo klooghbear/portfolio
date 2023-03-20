@@ -13,24 +13,47 @@
 
 			<br>
 
-			“Experience is the name everyone gives to their mistakes.” 
-			- Oscar Wilde
+			<sub-panel>
+				“Experience is the name everyone gives to their mistakes.” 
+				- Oscar Wilde
+
+				<div class="app-summary__social-links">
+					<img src="../../assets/icons/github.svg">
+
+					<img src="../../assets/icons/linkedin.svg">
+				</div>
+			</sub-panel>
 		</hero-panel>
 	</div>
 </template>
 
 <script lang="ts">
 import HeroPanel from "../Panels/HeroPanel.vue"
+import SubPanel from "../Panels/SubPanel.vue"
 
 export default {
 	name: "AppSummary",
 
-	components: { HeroPanel },
+	components: { HeroPanel, SubPanel },
 }
 </script>
 
 <style lang="scss">
 .app-summary {
+	&__social-links {
+		display: flex;
 
+		img {
+			cursor: pointer;
+			width: 50px;
+			margin: 10px 10px 0 0;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #e6ded0;
+
+			&:hover {
+				border-bottom: solid 2px #d0034e;
+			}
+		}
+	}
 }
 </style>

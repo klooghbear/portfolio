@@ -33,8 +33,13 @@ export default {
 	margin: 40px;
 	text-align: justify;
 
+	&:hover {
+		.hero-panel__title {
+			color: #d0034e;
+		}
+	}
+
 	&__title {
-		color: #d0034e;
 		font-size: 34px;
 	}
 
