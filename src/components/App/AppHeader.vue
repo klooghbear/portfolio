@@ -62,15 +62,15 @@ export default {
 	align-items: center;
 	justify-content: space-evenly;
 	position: fixed;
-	width: 100%;
+	width: 70%;
 	top: 0;
-	left: 0;
+	left: 15%;
 	text-align: center;
 	border-bottom: 1px solid #d0034e; 
 	padding: 30px 0;
 
 	&__logo {
-		font-size: 40px;
+		font-size: 35px;
 	}
 
 	&__navigation {
@@ -90,7 +90,8 @@ export default {
 		}
 
 		img {
-			height: 60px;
+			object-fit: contain;
+			height: 40px;
 		}
 	}
 }

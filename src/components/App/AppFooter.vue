@@ -14,10 +14,10 @@ export default {
 <style lang="scss">
 .app-footer {
 	background: #e6ded0;
-	left: 0;
+	left: 15%;
 	position: fixed;
 	bottom: 0;
-	width: 100%;
+	width: 70%;
 	height: 60px;
 	display: flex;
 	flex-direction: row;
