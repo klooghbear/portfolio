@@ -6,7 +6,9 @@
 
 		<br>
 
-		<div class="hero-panel__content" v-html="this.content" />
+		<div class="hero-panel__content">
+			<slot/>
+		</div>
 	</div>
 </template>
 
@@ -16,11 +18,6 @@ export default {
 
 	props: {
 		title: {
-			type: String,
-			required: true
-		},
-
-		content: {
 			type: String,
 			required: true
 		}
