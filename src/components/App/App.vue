@@ -2,7 +2,7 @@
   <div class="app">
     <app-header />
 
-    <app-footer :content="this.content"/>
+    <app-footer />
   </div>
 </template>
 
@@ -14,12 +14,6 @@ export default {
   name: "App",
 
   components: { AppHeader, AppFooter },
-
-  computed: {
-    content() {
-      return `This is where the footer and it's content will sit.`
-    }
-  }
 }
 </script>
 
@@ -28,5 +22,12 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  margin-top: 140px;
+  min-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 48rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 </style>

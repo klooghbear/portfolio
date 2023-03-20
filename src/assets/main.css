@@ -26,6 +26,7 @@ a,
   body {
     display: flex;
     place-items: center;
+    padding: 25%;
   }
 
   #app {

@@ -1,6 +1,6 @@
 <template>
 	<div class="app-footer">
-		{{ this.content }}
+		This is where the content will sit.
 	</div>
 </template>
 
@@ -8,21 +8,21 @@
 
 export default {
 	name: "AppFooter",
-
-	props: {
-		content: {
-			type: String,
-			required: true
-		}
-	}
 }
 </script>
 
 <style lang="scss">
 .app-footer {
+	left: 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	text-align: center;
+	justify-content: center;
+	border-top: 1px solid #d0034e; 
 }
 </style>

@@ -12,7 +12,7 @@
 					alt="blog-icon"
 				>
 
-				blog
+				Blog
 			</div>
 
 			<div class="app-header__navigation-icon">
@@ -22,7 +22,7 @@
 					alt="apps-icon"
 				>
 
-				code
+				Code
 			</div>
 
 			<div class="app-header__navigation-icon">
@@ -32,7 +32,7 @@
 					alt="about-icon"
 				>
 
-				about
+				About
 			</div>
 
 			<div class="app-header__navigation-icon">
@@ -42,7 +42,7 @@
 					alt="contact-icon"
 				>
 
-				contact
+				Contact
 			</div>
 		</div>
 	</div>
@@ -64,7 +64,7 @@ export default {
 	top: 0;
 	left: 0;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 40px;
 	border-bottom: 1px solid #d0034e; 
 	padding-bottom: 20px;
 
@@ -82,6 +82,11 @@ export default {
 		display: flex;
 		flex-direction: column;
 		font-size: 20px;
+		cursor: pointer;
+
+		&:hover {
+			color: #d0034e;
+		}
 
 		img {
 			height: 60px;
