@@ -56,6 +56,8 @@ export default {
 
 <style lang="scss">
 .app-header {
+	z-index: 1;
+	background: #e6ded0;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
@@ -64,12 +66,11 @@ export default {
 	top: 0;
 	left: 0;
 	text-align: center;
-	margin-top: 40px;
 	border-bottom: 1px solid #d0034e; 
-	padding-bottom: 20px;
+	padding: 30px 0;
 
 	&__logo {
-		font-size: 30px;
+		font-size: 40px;
 	}
 
 	&__navigation {

@@ -13,6 +13,7 @@ export default {
 
 <style lang="scss">
 .app-footer {
+	background: #e6ded0;
 	left: 0;
 	position: fixed;
 	bottom: 0;
