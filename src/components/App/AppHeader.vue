@@ -6,42 +6,18 @@
 
 		<div class="app-header__navigation">
 			<div class="app-header__navigation-icon">
-				<img
-					class="app-header__blog-image"
-					src="../../assets/icons/blog.svg"
-					alt="blog-icon"
-				>
-
 				Blog
 			</div>
 
 			<div class="app-header__navigation-icon">
-				<img
-					class="app-header__apps-image"
-					src="../../assets/icons/code.svg"
-					alt="apps-icon"
-				>
-
 				Code
 			</div>
 
 			<div class="app-header__navigation-icon">
-				<img
-					class="app-header__about-image"
-					src="../../assets/icons/network.svg"
-					alt="about-icon"
-				>
-
 				About
 			</div>
 
 			<div class="app-header__navigation-icon">
-				<img
-					class="app-header__contact-image"
-					src="../../assets/icons/mail.svg"
-					alt="contact-icon"
-				>
-
 				Contact
 			</div>
 		</div>
@@ -60,11 +36,11 @@ export default {
 	background: #e6ded0;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	position: fixed;
-	width: 60%;
+	width: 100%;
+	left: 0;
 	top: 0;
-	left: 20%;
 	text-align: center;
 	border-bottom: 1px solid #d0034e; 
 	padding: 30px 0;
@@ -81,10 +57,11 @@ export default {
 		display: flex;
 		flex-direction: column;
 		font-size: 20px;
-		padding: 0 15px;
+		padding: 15px 15px;
 		cursor: pointer;
 
 		&:hover {
+			background: #eb92b2;
 			color: #d0034e;
 		}
 

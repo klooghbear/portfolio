@@ -14,8 +14,8 @@ export default {
 <style lang="scss">
 .app-footer {
 	background: #e6ded0;
-	width: 60%;
-	left: 20%;
+	width: 100%;
+	left: 0;
 	position: fixed;
 	bottom: 0;
 	height: 60px;

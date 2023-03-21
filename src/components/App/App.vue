@@ -1,8 +1,12 @@
 <template>
   <div class="app">
     <app-header />
-
-    <app-summary />
+    
+    <panel-group>
+      <li :key="appComponent" v-for="appComponent in this.components">
+        <component :is="appComponent"/>
+      </li>
+    </panel-group>
 
     <app-footer />
   </div>
@@ -12,11 +16,18 @@
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
+import PanelGroup from "../Panels/PanelGroup.vue"
 
 export default {
   name: "App",
 
-  components: { AppHeader, AppFooter, AppSummary },
+  components: { AppHeader, AppFooter, AppSummary, PanelGroup },
+
+  computed: {
+    components() {
+      return { AppSummary }
+    }
+  }
 }
 </script>
 
