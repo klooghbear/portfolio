@@ -60,11 +60,11 @@ export default {
 	background: #e6ded0;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	position: fixed;
-	width: 70%;
+	width: 60%;
 	top: 0;
-	left: 15%;
+	left: 20%;
 	text-align: center;
 	border-bottom: 1px solid #d0034e; 
 	padding: 30px 0;
@@ -75,14 +75,13 @@ export default {
 
 	&__navigation {
 		display: flex;
-		justify-content: space-around;
-		width: 30%;
 	}
 
 	&__navigation-icon {
 		display: flex;
 		flex-direction: column;
 		font-size: 20px;
+		padding: 0 15px;
 		cursor: pointer;
 
 		&:hover {

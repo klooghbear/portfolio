@@ -30,7 +30,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin: 40px;
+	margin: 40px 0 20px;
 	text-align: justify;
 
 	&:hover {

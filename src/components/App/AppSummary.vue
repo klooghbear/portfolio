@@ -17,9 +17,19 @@
 				- Oscar Wilde
 
 				<div class="app-summary__social-links">
-					<img src="../../assets/icons/github.svg">
+					<a
+						href="https://github.com/klooghbear"
+						class="app-summary__social-image"
+					>
+						<img src="../../assets/icons/github.svg">
+					</a>
 
-					<img src="../../assets/icons/linkedin.svg">
+					<a
+						href="https://www.linkedin.com/in/sebastiankloogh/"
+						class="app-summary__social-image"
+					>
+						<img src="../../assets/icons/linkedin.svg">
+					</a>
 				</div>
 			</sub-panel>
 		</hero-panel>
@@ -39,20 +49,31 @@ export default {
 
 <style lang="scss">
 .app-summary {
+	border-bottom: 1px solid;
+
 	&__social-links {
 		display: flex;
 
 		img {
 			cursor: pointer;
-			margin: 10px 20px 0 0;
-			padding-bottom: 10px;
-			border-bottom: 2px solid #e6ded0;
 			object-fit: contain;
+			height: 50px;
 			width: 50px;
+		}
+	}
 
-			&:hover {
-				border-bottom: solid 2px #d0034e;
-			}
+	&__social-image {
+		display: flex;
+		margin: 10px 20px 0 0;
+		height: 60px;
+		width: 60px;
+		border-radius: 50%;
+		justify-content: center;
+    align-content: center;
+    align-items: center;
+
+		&:hover {
+			background-color: #d0034e;
 		}
 	}
 }
