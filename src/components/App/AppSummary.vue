@@ -1,12 +1,12 @@
 <template>
 	<div class="app-summary">
-		<hero-panel :title="'Summary'">
-			Welcome to my page.  My name is Sebastian and I'm a
-			Software Engineer with a crush on web technologies.  Here
-			you'll find previous projects, blog posts, reflections, work
-			experiences and personal nuggets I'm collecting. The purpose 
-			of this website is to give you some insight into what kind of 
-			Software Engineer I am.  Happy reading!
+		<hero-panel :title="'Welcome to my world!'">
+			Welcome to my page.  My name is Sebastian and I'm a Software
+			Engineer with a crush on web technologies like TS, React, Node and
+			Vue.  Here you'll find previous projects, blog posts, reflections,
+			work experiences and personal nuggets I'm collecting. The purpose of
+			this site is to give you some insight into what kind of Software
+			Engineer I am.  Happy reading!
 
 			<br>
 
@@ -49,6 +49,7 @@ export default {
 
 <style lang="scss">
 .app-summary {
+	padding: 20px 0 10px;
 	border-bottom: 1px solid;
 
 	&__social-links {

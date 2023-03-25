@@ -36,17 +36,15 @@ export default {
 	background: #e6ded0;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
-	position: fixed;
-	width: 100%;
-	left: 0;
+	justify-content: space-between;
+	position: sticky;
 	top: 0;
 	text-align: center;
 	border-bottom: 1px solid #d0034e; 
 	padding: 30px 0;
 
 	&__logo {
-		font-size: 35px;
+		font-size: 25px;
 	}
 
 	&__navigation {

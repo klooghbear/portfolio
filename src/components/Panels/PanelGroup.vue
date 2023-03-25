@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss">
 .panel-group {
-	list-style: none
+	list-style: none;
+	padding: 30px 0;
 }
 </style>

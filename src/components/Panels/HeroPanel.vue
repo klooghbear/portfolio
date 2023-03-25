@@ -4,7 +4,7 @@
 			{{ this.title }}
 		</label>
 
-		<br>
+		<br	>
 
 		<div class="hero-panel__content">
 			<slot/>
@@ -30,7 +30,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin: 40px 0 20px;
+	margin: 20px 0;
 	text-align: justify;
 
 	&:hover {
@@ -40,11 +40,11 @@ export default {
 	}
 
 	&__title {
-		font-size: 34px;
+		font-size: 40px;
 	}
 
 	&__content {
-		font-size: 18px;
+		font-size: 20px;
 	}
 }
 </style>

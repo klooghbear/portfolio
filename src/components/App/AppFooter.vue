@@ -14,16 +14,16 @@ export default {
 <style lang="scss">
 .app-footer {
 	background: #e6ded0;
-	width: 100%;
-	left: 0;
-	position: fixed;
+	// width: 100%;
+	// left: 0;
+	position: sticky;
 	bottom: 0;
 	height: 60px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	text-align: center;
+	text-align: justify;
 	justify-content: center;
-	border-top: 1px solid #d0034e; 
+	border-top: 1px solid #d0034e;	
 }
 </style>
