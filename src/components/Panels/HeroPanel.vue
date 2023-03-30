@@ -1,7 +1,7 @@
 <template>
 	<div class="hero-panel">
 		<label class="hero-panel__title">
-			{{ this.title }}
+			{{ title }}
 		</label>
 
 		<br	>

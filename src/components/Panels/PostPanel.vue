@@ -1,16 +1,16 @@
 <template>
 	<div class="post-panel">
 		<label class="post-panel__title">
-			{{ this.title }}
+			{{ title }}
 		</label>
 
 		<label class="post-panel__date">
 			<img src="../../assets/icons/calendar.svg"/>
 
-			{{ this.date }}
+			{{ date }}
 		</label>
 
-		<div class="post-panel__description" v-html="this.description" />
+		<div class="post-panel__description" v-html="description" />
 	</div>
 </template>
 
