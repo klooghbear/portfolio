@@ -1,5 +1,5 @@
 <template>
-	<div class="post-panel">
+	<button href="/" class="post-panel">
 		<label class="post-panel__title">
 			{{ this.title }}
 		</label>
@@ -11,7 +11,7 @@
 		</label>
 
 		<div class="post-panel__description" v-html="this.description" />
-	</div>
+	</button>
 </template>
 
 <script lang="ts">
@@ -41,6 +41,12 @@ export default {
 .post-panel {
 	display: flex;
 	flex-direction: column;
+	cursor: pointer;
+	border-radius: 50px;
+
+	&:hover {
+		box-shadow: 0px 0px 16px 0 #eb92b339 0 0;
+	}
 
 	&__title {
 		font-size: 30px;

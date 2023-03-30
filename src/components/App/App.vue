@@ -6,9 +6,9 @@
 
     <panel-group>
       <post-panel
-        :title="'PocketSmith'"
+        :title="'The Purpose of this Website'"
         :date="'22-03-2023'"
-        :description="pocketsmithDescription"
+        :description="description"
       />
     </panel-group>
 
@@ -35,24 +35,11 @@ export default {
   },
 
   computed: {
-    pocketsmithDescription() {
+    description() {
       return `
-        PocketSmith are specialists in personal money management tools. They
-        integrate with all major banks around the world and incorporate features
-        such as automatic bank syncing, rollover budgeting, customizable widgets
-        and much more.  The Pockies' are a passionate bunch who care about
-        software that's engaging, beautiful and robust. My role with PocketSmith
-        was mainly in the frontend team.  I might spend my day building out a
-        new customizable widget, creating a new notification banner for the
-        support team, updating some of the legacy libraries or creating new 
-        components to improve our architecture.
-
-        <br>
-
-        <br>
-
-        I've learned a lot of lessons technically and personally working for
-        the team at PocketSmith.  I've summarized them below!
+        This post details a bit about the purpose of this website.  I talk about
+        ambitions and reflections on previous experiences as well as a general
+        summary of who I am.
       `.trim()
     }
   }
