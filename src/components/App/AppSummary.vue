@@ -74,7 +74,7 @@ export default {
     align-items: center;
 
 		&:hover {
-			background-color: #eb92b2;
+			background-color: #eb92b339;
 		}
 	}
 }
