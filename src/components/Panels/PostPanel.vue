@@ -12,7 +12,7 @@
 			</label>
 		</div>
 
-		<div class="post-panel__description" v-html="this.description" />
+		<div class="post-panel__description" v-html="description" />
 	</button>
 </template>
 
