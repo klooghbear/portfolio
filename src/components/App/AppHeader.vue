@@ -33,7 +33,7 @@ export default {
 <style lang="scss">
 .app-header {
 	z-index: 1;
-	background: #e6ded0;
+	background: #000;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -59,8 +59,8 @@ export default {
 		cursor: pointer;
 
 		&:hover {
-			background: #eb92b339;
-			color: #d0034e;
+			background: #eee;
+			color: #000;
 		}
 
 		img {

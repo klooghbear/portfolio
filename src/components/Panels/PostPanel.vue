@@ -1,14 +1,16 @@
 <template>
-	<button href="/" class="post-panel">
-		<label class="post-panel__title">
-			{{ this.title }}
-		</label>
+	<button class="post-panel">
+		<div href="/" class="post-panel__header">
+			<label class="post-panel__title">
+				{{ this.title }}
+			</label>
 
-		<label class="post-panel__date">
-			<img src="../../assets/icons/calendar.svg"/>
+			<label class="post-panel__date">
+				<img src="../../assets/icons/calendar.svg"/>
 
-			{{ this.date }}
-		</label>
+				{{ this.date }}
+			</label>
+		</div>
 
 		<div class="post-panel__description" v-html="this.description" />
 	</button>
@@ -41,32 +43,42 @@ export default {
 .post-panel {
 	display: flex;
 	flex-direction: column;
-	cursor: pointer;
-	border-radius: 50px;
+	border-radius: 5px;
+	padding: 10px;
 
-	&:hover {
-		box-shadow: 0px 0px 16px 0 #eb92b339 0 0;
+	&__header {
+		display: flex;
+		margin-bottom: 20px;
+		width: 75%;
+		justify-content: space-between;
+		text-decoration: none;
+		color: #eee;
 	}
 
 	&__title {
 		font-size: 30px;
+		cursor: pointer;
 	}
 
 	&__date {
 		display: flex;
-		align-self: flex-start;
-		padding-bottom: 5px;
-		margin-bottom: 10px;
-		border-bottom: 1px solid #d0034e;
+		align-items: center;
 
 		img {
+			background-color: #eee;
 			margin-right: 10px;
+			padding: 2px;
 			object-fit: contain;
+			border-radius: 5px;
 		}
 	}
 
 	&__description {
 		text-align: justify;
+	}
+
+	&:hover {
+		background-color: #d0034e;
 	}
 }
 </style>

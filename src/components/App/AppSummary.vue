@@ -1,6 +1,6 @@
 <template>
 	<div class="app-summary">
-		<hero-panel :title="'Welcome to my world!'">
+		<hero-panel :title="'Welcome!'">
 			Welcome to my page.  My name is Sebastian and I'm a Software
 			Engineer with a crush on web technologies like TS, React, Node and
 			Vue.  Here you'll find previous projects, blog posts, reflections,
@@ -50,7 +50,6 @@ export default {
 <style lang="scss">
 .app-summary {
 	padding: 20px 0 10px;
-	border-bottom: 1px solid;
 
 	&__social-links {
 		display: flex;
@@ -72,9 +71,10 @@ export default {
 		justify-content: center;
     align-content: center;
     align-items: center;
+		background-color: #eee;
 
 		&:hover {
-			background-color: #eb92b339;
+			background-color: #d0034e;
 		}
 	}
 }

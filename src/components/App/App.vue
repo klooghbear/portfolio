@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" v-if="isFeatureFlagEnabled">
     <app-header />
 
     <app-summary />
@@ -14,23 +14,39 @@
 
     <app-footer />
   </div>
+
+  <div class="app">
+    <app-loader
+      :loading-type="'feature-flag'"
+      :footer-message="'coming soon...'"
+    />
+  </div>
 </template>
 
 <script lang="ts">
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
+import AppLoader from "./AppLoader.vue"
 import PanelGroup from "../Panels/PanelGroup.vue"
 import PostPanel from "../Panels/PostPanel.vue"
 
 export default {
   name: "App",
   
-  components: { AppHeader, AppFooter, AppSummary, PanelGroup, PostPanel },
+  components: { 
+    AppHeader, 
+    AppFooter, 
+    AppSummary, 
+    PanelGroup, 
+    PostPanel, 
+    AppLoader
+  },
 
   data() {
     return {
-      date: Date.now.toString()
+      date: Date.now.toString(),
+      isFeatureFlagEnabled: false
     }
   },
 
@@ -42,7 +58,7 @@ export default {
         summary of who I am.
       `.trim()
     }
-  }
+  },
 }
 </script>
 
@@ -57,5 +73,6 @@ export default {
   max-width: 48rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  color: #eee;
 }
 </style>
