@@ -1,0 +1,9 @@
+services:
+  portfolio-app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/app
+  portfolio-image:
+    image: "redis:alpine"

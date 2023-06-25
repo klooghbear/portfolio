@@ -2,13 +2,13 @@
 	<button class="post-panel">
 		<div href="/" class="post-panel__header">
 			<label class="post-panel__title">
-				{{ this.title }}
+				{{ title }}
 			</label>
 
 			<label class="post-panel__date">
 				<img src="../../assets/icons/calendar.svg"/>
 
-				{{ this.date }}
+				{{ date }}
 			</label>
 		</div>
 

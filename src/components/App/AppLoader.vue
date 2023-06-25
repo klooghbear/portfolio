@@ -29,13 +29,11 @@ export default {
     },
 
 		headerMessage: {
-			type: String || null,
-			required: true
+			type: String || null
 		},
 
 		footerMessage: {
-			type: String || null,
-			required: true
+			type: String || null
 		}
   },
 
