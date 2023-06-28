@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Find working directory
-        run: echo ${{ github.workspaces }}
+        run: echo "${{ github.workspaces }}"
 
       - name: Install dependencies
         run: npm install
