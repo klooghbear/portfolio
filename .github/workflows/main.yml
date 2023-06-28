@@ -18,9 +18,13 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3
         with:
-          cache: 'npm'
-          cache-dependency-path: portfolio/package-lock.json
+          path: portfolio/
+          key: ${{ runner.os }}-dependencies
 
       - name: Install dependencies
         run: |
