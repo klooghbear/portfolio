@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Find working directory
-        run: echo {{ working-directory }}
+        run: echo {{ defaults.working-directory }}
 
       - name: Install dependencies
         run: npm install
