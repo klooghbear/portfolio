@@ -4,10 +4,10 @@ on:
   pull_request:
     types: [ opened, reopened ]
     branches:
-      - feature/**
+      - main
   push:
     branches:
-      - main
+      - feature/**
 
 
 jobs:
