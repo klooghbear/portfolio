@@ -18,7 +18,7 @@
   <div class="app">
     <app-loader
       :loading-type="'feature-flag'"
-      :footer-message="'coming soon...'"
+      :footer-message="'Coming soon...'"
     />
   </div>
 </template>
