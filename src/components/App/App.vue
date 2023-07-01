@@ -6,7 +6,7 @@
 
     <panel-group>
       <post-panel
-        :title="'The Purpose of this Website'"
+        :title="'The purpose of this website'"
         :date="'22-03-2023'"
         :description="description"
       />
