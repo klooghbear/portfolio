@@ -3,6 +3,8 @@ name: Development Portfolio
 on:
   pull_request:
     types: [ opened, reopened ]
+    branches:
+      - development
   push:
     branches:
       - development
