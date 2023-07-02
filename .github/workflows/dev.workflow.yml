@@ -1,4 +1,4 @@
-name: Feature Portfolio
+name: Development Portfolio
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Development Build
     runs-on: ubuntu-latest
 
     steps:
