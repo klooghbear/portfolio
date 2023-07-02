@@ -2,10 +2,8 @@ name: Github Action Workflow
 
 on:
   pull_request:
-    types: [ opened, reopened, edited ]
-    branches:
-      - feature/**
-  push:
+    types:
+      - opened
     branches:
       - main
 
