@@ -3,9 +3,10 @@ name: Deploy
 on:
   pull_request:
     types: [ opened, reopened ]
-  push:
     branches:
       - main
+  push:
+    branches:
       - feature/**
 
 
@@ -47,11 +48,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
