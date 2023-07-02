@@ -2,12 +2,12 @@ name: Deploy
 
 on:
   pull_request:
-    types: [ opened, reopened, closed ]
-    branches:
-      - main
-  push:
+    types: [ opened, reopened, edited ]
     branches:
       - feature/**
+  push:
+    branches:
+      - main
 
 
 jobs:
