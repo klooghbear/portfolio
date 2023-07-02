@@ -5,7 +5,7 @@ on:
     types: [ opened, reopened ]
   push:
     branches:
-      - dev
+      - development
 
 jobs:
   build:
