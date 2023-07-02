@@ -3,13 +3,15 @@ name: Feature Portfolio
 on:
   pull_request:
     types: [ opened, reopened ]
+    branches:
+      - feature/**
   push:
     branches:
       - feature/**
 
 jobs:
   build:
-    name: Build
+    name: Feature Build
     runs-on: ubuntu-latest
 
     steps:
