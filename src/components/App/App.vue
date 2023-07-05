@@ -1,5 +1,5 @@
 <template>
-  <div class="app" v-if="isProductionEnabled">
+  <div class="app" v-if="isProductionEnabled && !isLoading">
     <app-header />
 
     <app-summary />
@@ -15,7 +15,7 @@
     <app-footer />
   </div>
 
-  <div class="app" v-if="isLoading">
+  <div class="app" v-else>
     <app-loader
       :loading-type="'feature-flag'"
       :footer-message="'Coming soon...'"
@@ -24,6 +24,8 @@
 </template>
 
 <script lang="ts">
+import "../../../env.d.ts"
+
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
@@ -31,7 +33,6 @@ import AppLoader from "./AppLoader.vue"
 import PanelGroup from "../Panels/PanelGroup.vue"
 import PostPanel from "../Panels/PostPanel.vue"
 
-import { env } from "process"
 import { parseErrorMessage } from "../../helpers/errorHandler"
 
 import * as configCat from "configcat-js";
@@ -70,27 +71,20 @@ export default {
   },
   methods: {
     async getFeatureFlagStatus() {
-      const { VUE_APP_CONFIGCAT_SDK } = env
-      const hasSdkKey = VUE_APP_CONFIGCAT_SDK !== undefined
+      const SDK_KEY = import.meta.env.VUE_APP_CONFIGCAT_SDK
       let errorMessage: string | undefined
 
-      if (hasSdkKey) {
-        try {
-          const configCatClient = configCat.default(VUE_APP_CONFIGCAT_SDK)
+      try {
+        const configCatClient = configCat.default(`${SDK_KEY}`)
 
-          this.isProductionEnabled = await configCatClient.getValueAsync(
-            "productionEnabled",
-            false
-          )
-        } catch (error) {
-          errorMessage = parseErrorMessage(error)
-          
-          throw new Error(`Error retrieving feature flag config${errorMessage}`)
-        }
-      } else {
-        errorMessage = `Your SDK key is incorrect, please reconfigure`
-
-        throw new Error(`There was a problem where your config${errorMessage}`)
+        this.isProductionEnabled = await configCatClient.getValueAsync(
+          "productionEnabled",
+          false
+        )
+      } catch (error) {
+        errorMessage = parseErrorMessage(error)
+        
+        throw new Error(`Error retrieving feature flag config${errorMessage}`)
       }
 
       console.log(`productionEnabled is ${this.isProductionEnabled}`)
