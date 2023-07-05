@@ -1,13 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "exclude": [],
-  "compilerOptions": {
+	"compilerOptions": {
     "composite": true,
     "lib": [],
     "types": ["node", "jsdom"],
     "ignoreDeprecations": "5.0",
     "importsNotUsedAsValues": "error",
-    "isolatedModules": true,
     "resolveJsonModule": true,
   }
 }
