@@ -1,14 +1,24 @@
 {
+  "extends": [
+    "@vue/tsconfig/tsconfig.web.json",
+    "@vue/tsconfig/tsconfig.node.json",
+  ],
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "vite.config.*",
+    "vitest.config.*",
+    "cypress.config.*",
+    "playwright.config.*"
+  ],
+  "exclude": ["src/**/__tests__/*"],
   "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+  "compilerOptions": {
+    "types": ["node", "jsdom"],
+    "ignoreDeprecations": "5.0",
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+  }
 }
