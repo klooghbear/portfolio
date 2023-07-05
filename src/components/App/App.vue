@@ -1,5 +1,5 @@
 <template>
-  <div class="app" v-if="isFeatureFlagEnabled">
+  <div class="app" v-if="isProductionEnabled && !isLoading">
     <app-header />
 
     <app-summary />
@@ -15,7 +15,7 @@
     <app-footer />
   </div>
 
-  <div class="app">
+  <div class="app" v-else>
     <app-loader
       :loading-type="'feature-flag'"
       :footer-message="'Coming soon...'"
@@ -24,12 +24,18 @@
 </template>
 
 <script lang="ts">
+import "../../../env.d.ts"
+
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
 import AppLoader from "./AppLoader.vue"
 import PanelGroup from "../Panels/PanelGroup.vue"
 import PostPanel from "../Panels/PostPanel.vue"
+
+import { parseErrorMessage } from "../../helpers/errorHandler"
+
+import * as configCat from "configcat-js";
 
 export default {
   name: "App",
@@ -46,7 +52,11 @@ export default {
   data() {
     return {
       date: Date.now.toString(),
-      isFeatureFlagEnabled: false
+      isProductionEnabled: false,
+      isLoading: true,
+      error: {
+        message: ""
+      }
     }
   },
 
@@ -59,6 +69,28 @@ export default {
       `.trim()
     }
   },
+  methods: {
+    async getFeatureFlagStatus() {
+      const SDK_KEY = import.meta.env.VUE_APP_CONFIGCAT_SDK
+      let errorMessage: string | undefined
+
+      try {
+        const configCatClient = configCat.default(`${SDK_KEY}`)
+
+        this.isProductionEnabled = await configCatClient.getValueAsync(
+          "productionEnabled",
+          false
+        )
+      } catch (error) {
+        errorMessage = parseErrorMessage(error)
+        
+        throw new Error(`Error retrieving feature flag config${errorMessage}`)
+      }
+
+      console.log(`productionEnabled is ${this.isProductionEnabled}`)
+      this.isLoading = false
+    }
+  }
 }
 </script>
 
@@ -75,4 +107,4 @@ export default {
   padding-right: 1rem;
   color: #eee;
 }
-</style>
+</style>../../errorHandler../../helpers/errorHandler
