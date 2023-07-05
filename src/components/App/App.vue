@@ -1,5 +1,5 @@
 <template>
-  <div class="app" v-if="isProductionEnabled && !isLoading">
+  <div class="app" v-if="isProductionEnabled">
     <app-header />
 
     <app-summary />
@@ -15,7 +15,7 @@
     <app-footer />
   </div>
 
-  <div class="app" v-else>
+  <div class="app" v-else-if="isLoading">
     <app-loader
       :loading-type="'feature-flag'"
       :footer-message="'Coming soon...'"
@@ -69,25 +69,42 @@ export default {
       `.trim()
     }
   },
+
+  created() {
+    this.getFeatureFlagStatus()
+  },
+
   methods: {
     async getFeatureFlagStatus() {
+      const USER_ID = import.meta.env.USER_ID
+      const USER_EMAIL = import.meta.env.USER_EMAIL
       const SDK_KEY = import.meta.env.VUE_APP_CONFIGCAT_SDK
       let errorMessage: string | undefined
 
       try {
-        const configCatClient = configCat.default(`${SDK_KEY}`)
-
+        const pollyMode = configCat.PollingMode.AutoPoll
+        const user = new configCat.User(USER_ID, USER_EMAIL, "New Zealand", {
+          "UserRole": "Admin"
+        })
+        const logger = configCat.createConsoleLogger(
+          configCat.LogLevel.Info
+        )
+        const configCatClient = configCat.getClient(SDK_KEY, pollyMode, { 
+          logger 
+        })
+        
         this.isProductionEnabled = await configCatClient.getValueAsync(
           "productionEnabled",
-          false
+          false,
+          user
         )
+        console.log(`productionEnabled is ${this.isProductionEnabled}`)
       } catch (error) {
         errorMessage = parseErrorMessage(error)
         
         throw new Error(`Error retrieving feature flag config${errorMessage}`)
       }
 
-      console.log(`productionEnabled is ${this.isProductionEnabled}`)
       this.isLoading = false
     }
   }
