@@ -24,8 +24,6 @@
 </template>
 
 <script lang="ts">
-import "../../../env.d.ts"
-
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
@@ -71,41 +69,34 @@ export default {
   },
 
   created() {
-    this.getFeatureFlagStatus()
+    this.getFeatureFlagStatus().then(() => {
+      this.isLoading = false
+    }).catch((error) => {
+      const errorMessage = `
+      There was an issue evaluating your feature flag. Error message: 
+      ${parseErrorMessage(error)}
+      `.trim()
+      
+      this.isLoading = false
+      
+      throw new Error(errorMessage)
+    })
   },
 
   methods: {
     async getFeatureFlagStatus() {
-      const USER_ID = import.meta.env.USER_ID
-      const USER_EMAIL = import.meta.env.USER_EMAIL
-      const SDK_KEY = import.meta.env.VUE_APP_CONFIGCAT_SDK
-      let errorMessage: string | undefined
+      const SDK_KEY = import.meta.env.VITE_VUE_APP_CONFIGCAT_SDK
+      const pollyMode = configCat.PollingMode.AutoPoll
+      const logLevel = configCat.LogLevel.Info
+      const logger = { logger: configCat.createConsoleLogger(logLevel) }
+      const configCatClient = configCat.getClient(SDK_KEY, pollyMode, logger)
+      const user = new configCat.User(import.meta.env.VITE_USER_ID)
 
-      try {
-        const pollyMode = configCat.PollingMode.AutoPoll
-        const user = new configCat.User(USER_ID, USER_EMAIL, "New Zealand", {
-          "UserRole": "Admin"
-        })
-        const logger = configCat.createConsoleLogger(
-          configCat.LogLevel.Info
-        )
-        const configCatClient = configCat.getClient(SDK_KEY, pollyMode, { 
-          logger 
-        })
-        
-        this.isProductionEnabled = await configCatClient.getValueAsync(
-          "productionEnabled",
-          false,
-          user
-        )
-        console.log(`productionEnabled is ${this.isProductionEnabled}`)
-      } catch (error) {
-        errorMessage = parseErrorMessage(error)
-        
-        throw new Error(`Error retrieving feature flag config${errorMessage}`)
-      }
-
-      this.isLoading = false
+      this.isProductionEnabled = await configCatClient.getValueAsync(
+        "productionEnabled",
+        false,
+        user
+      )
     }
   }
 }
