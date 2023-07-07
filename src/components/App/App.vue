@@ -1,5 +1,12 @@
 <template>
-  <div class="app" v-if="isProductionEnabled">
+  <div class="app" v-if="isLoading(isProductionEnabled)">
+    <app-loader
+      :loading-type="'feature-flag'"
+      :footer-message="'Coming soon...'"
+    />
+  </div>
+
+  <div class="app" v-else>
     <app-header />
 
     <app-summary />
@@ -13,13 +20,6 @@
     </panel-group>
 
     <app-footer />
-  </div>
-
-  <div class="app" v-else-if="isLoading">
-    <app-loader
-      :loading-type="'feature-flag'"
-      :footer-message="'Coming soon...'"
-    />
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
     return {
       date: Date.now.toString(),
       isProductionEnabled: false,
-      isLoading: true,
+      loading: true,
       error: {
         message: ""
       }
@@ -69,18 +69,7 @@ export default {
   },
 
   created() {
-    this.getFeatureFlagStatus().then(() => {
-      this.isLoading = false
-    }).catch((error) => {
-      const errorMessage = `
-      There was an issue evaluating your feature flag. Error message: 
-      ${parseErrorMessage(error)}
-      `.trim()
-      
-      this.isLoading = false
-      
-      throw new Error(errorMessage)
-    })
+    this.getFeatureFlagStatus()
   },
 
   methods: {
@@ -92,11 +81,30 @@ export default {
       const configCatClient = configCat.getClient(SDK_KEY, pollyMode, logger)
       const user = new configCat.User(import.meta.env.VITE_USER_ID)
 
-      this.isProductionEnabled = await configCatClient.getValueAsync(
-        "productionEnabled",
-        false,
-        user
-      )
+      try {
+        this.isProductionEnabled = await configCatClient.getValueAsync(
+          "productionEnabled",
+          false,
+          user
+        )
+      } catch(error) {
+        const errorMessage = `
+          There was an issue evaluating your feature flag. Error message: 
+          ${parseErrorMessage(error)}
+        `.trim()
+      
+        throw new Error(errorMessage)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    isLoading(flagValue: boolean) {
+      if (!flagValue || this.loading) {
+        return true
+      }
+
+      return false
     }
   }
 }
