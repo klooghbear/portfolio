@@ -1,12 +1,26 @@
 <template>
 	<div class="app-summary">
-		<hero-panel :title="'Welcome!'">
-			Welcome to my page.  My name is Sebastian and I'm a Software
-			Engineer with a crush on web technologies like TS, React, Node and
-			Vue.  Here you'll find previous projects, blog posts, reflections,
-			work experiences and personal nuggets I'm collecting. The purpose of
-			this site is to give you some insight into what kind of Software
-			Engineer I am.  Happy reading!
+		<hero-panel>
+			Hey there! Welcome to my digital realm.  This is my little  corner 
+			of the web where I share my thoughts, journeys, dreams, and
+			perspectives.
+
+			<br>
+
+			<br>
+
+			Here, you'll find blog posts varying from tech to philosophy, travel
+			to personal development, and so much more. I wear multiple hats, and
+			this platform is a kaleidoscope reflecting the diverse facets of my
+			interests.
+
+			<br>
+
+			<br>
+
+			Whether you're a curious wanderer or someone with a similar zest for
+			life, you're welcome here. Let's explore, learn, dream, and maybe
+			even change the world, one blog post at a time. Happy browsing!
 
 			<br>
 
@@ -21,14 +35,14 @@
 						href="https://github.com/klooghbear"
 						class="app-summary__social-image"
 					>
-						<img src="../../assets/icons/github.svg">
+						<img src="/icons/github.svg">
 					</a>
 
 					<a
 						href="https://www.linkedin.com/in/sebastiankloogh/"
 						class="app-summary__social-image"
 					>
-						<img src="../../assets/icons/linkedin.svg">
+						<img src="/icons/linkedin.svg">
 					</a>
 				</div>
 			</sub-panel>
@@ -53,6 +67,7 @@ export default {
 
 	&__social-links {
 		display: flex;
+		padding-top: 20px;
 
 		img {
 			cursor: pointer;
@@ -67,14 +82,14 @@ export default {
 		margin: 10px 20px 0 0;
 		height: 60px;
 		width: 60px;
-		border-radius: 50%;
+		border-radius: 5px;
 		justify-content: center;
     align-content: center;
     align-items: center;
 		background-color: #eee;
 
 		&:hover {
-			background-color: #d0034e;
+			background-color: #42b883;
 		}
 	}
 }
