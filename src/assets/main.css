@@ -1,9 +1,9 @@
 @import './base.css';
 
 #app {
+  display: block;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   align-items: center;
   font-weight: normal;
   font-family: 'Inconsolata', monospace;
