@@ -13,17 +13,13 @@ export default {
 
 <style lang="scss">
 .app-footer {
-	background: #000;
-	// width: 100%;
-	// left: 0;
-	position: sticky;
-	bottom: 0;
+	background: #1a1a1a;
 	height: 60px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	text-align: justify;
 	justify-content: center;
-	border-top: 1px solid #d0034e;	
+	border-top: 1px solid #42b883;	
 }
 </style>

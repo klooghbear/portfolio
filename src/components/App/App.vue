@@ -11,7 +11,7 @@
 
     <app-summary />
 
-    <panel-group>
+    <panel-group :title="'Blogs'">
       <post-panel
         :title="'The Purpose of this Website'"
         :date="'22-03-2023'"
@@ -51,10 +51,7 @@ export default {
     return {
       date: Date.now.toString(),
       isProductionEnabled: false,
-      loading: true,
-      error: {
-        message: ""
-      }
+      loading: true
     }
   },
 
