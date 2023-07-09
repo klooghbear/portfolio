@@ -1,6 +1,6 @@
 <template>
 	<div class="hero-panel">
-		<label class="hero-panel__title">
+		<label v-if="title != null" class="hero-panel__title">
 			{{ title }}
 		</label>
 
@@ -19,7 +19,9 @@ export default {
 	props: {
 		title: {
 			type: String,
-			required: true
+			default() {
+				return null
+			}
 		}
 	}
 }
@@ -32,6 +34,8 @@ export default {
 	justify-content: space-between;
 	margin: 20px 0;
 	text-align: justify;
+	border-bottom: 1px solid #42b883;
+	padding-bottom: 40px;
 
 	&__title {
 		font-size: 40px;
