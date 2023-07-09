@@ -4,7 +4,7 @@
 			{{ headerMessage }}
 		</label>
 
-		<div :class="classes">			
+		<div :class="classes">
 			<div class="app-loader__icon" />
 
 			<div class="app-loader__icon" />
@@ -55,7 +55,7 @@ export default {
 
   &__icon {
     margin: 10px;
-    background-color: #d0034e;
+    background-color: #42b883;
     height: 20px;
     width: 20px;
     border-radius: 50%;

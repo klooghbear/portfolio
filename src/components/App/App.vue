@@ -1,10 +1,17 @@
 <template>
-  <div class="app" v-if="isProductionEnabled && !isLoading">
+  <div class="app" v-if="isLoading(isProductionEnabled)">
+    <app-loader
+      :loading-type="'feature-flag'"
+      :footer-message="'Coming soon...'"
+    />
+  </div>
+
+  <div class="app" v-else>
     <app-header />
 
     <app-summary />
 
-    <panel-group>
+    <panel-group :title="'Blogs'">
       <post-panel
         :title="'The Purpose of this Website'"
         :date="'22-03-2023'"
@@ -14,18 +21,9 @@
 
     <app-footer />
   </div>
-
-  <div class="app" v-else>
-    <app-loader
-      :loading-type="'feature-flag'"
-      :footer-message="'Coming soon...'"
-    />
-  </div>
 </template>
 
 <script lang="ts">
-import "../../../env.d.ts"
-
 import AppSummary from "./AppSummary.vue"
 import AppFooter from "./AppFooter.vue"
 import AppHeader from "./AppHeader.vue"
@@ -53,10 +51,7 @@ export default {
     return {
       date: Date.now.toString(),
       isProductionEnabled: false,
-      isLoading: true,
-      error: {
-        message: ""
-      }
+      loading: true
     }
   },
 
@@ -69,26 +64,44 @@ export default {
       `.trim()
     }
   },
+
+  created() {
+    this.getFeatureFlagStatus()
+  },
+
   methods: {
     async getFeatureFlagStatus() {
-      const SDK_KEY = import.meta.env.VUE_APP_CONFIGCAT_SDK
-      let errorMessage: string | undefined
+      const SDK_KEY = import.meta.env.VITE_VUE_APP_CONFIGCAT_SDK
+      const pollyMode = configCat.PollingMode.AutoPoll
+      const logLevel = configCat.LogLevel.Info
+      const logger = { logger: configCat.createConsoleLogger(logLevel) }
+      const configCatClient = configCat.getClient(SDK_KEY, pollyMode, logger)
+      const user = new configCat.User(import.meta.env.VITE_USER_ID)
 
       try {
-        const configCatClient = configCat.default(`${SDK_KEY}`)
-
         this.isProductionEnabled = await configCatClient.getValueAsync(
           "productionEnabled",
-          false
+          false,
+          user
         )
-      } catch (error) {
-        errorMessage = parseErrorMessage(error)
-        
-        throw new Error(`Error retrieving feature flag config${errorMessage}`)
+      } catch(error) {
+        const errorMessage = `
+          There was an issue evaluating your feature flag. Error message: 
+          ${parseErrorMessage(error)}
+        `.trim()
+      
+        throw new Error(errorMessage)
+      } finally {
+        this.loading = false
+      }
+    },
+
+    isLoading(flagValue: boolean) {
+      if (!flagValue || this.loading) {
+        return true
       }
 
-      console.log(`productionEnabled is ${this.isProductionEnabled}`)
-      this.isLoading = false
+      return false
     }
   }
 }
