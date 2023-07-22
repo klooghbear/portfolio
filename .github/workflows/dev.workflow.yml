@@ -5,9 +5,6 @@ on:
     types: [ opened, reopened ]
     branches:
       - development
-  push:
-    branches:
-      - development
 
 jobs:
   build:
@@ -29,10 +26,18 @@ jobs:
           key: ${{ runner.os }}-dependencies
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
           npm run lint
           npm run build --if-present
           npm run test --if-present
+      
+      - name: Lint
+        run: npm run lint
 
-# Add some tests for intergration suite testing
+      - name: Build
+        run: npm run build --if-present
+      
+      - name: Test
+        run: |
+          echo "Add some tests for intergration suite testing"
+          npm run test --if-present
