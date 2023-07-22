@@ -73,7 +73,7 @@ export default {
     },
 
     isLoading() {
-      if (this.isMainApplicationEnabled || this.loading) {
+      if (!this.isMainApplicationEnabled || this.loading) {
         return true
       }
 
