@@ -1,5 +1,5 @@
 <template>
-  <div class="app" v-if="isLoading(isProductionEnabled)">
+  <div class="app" v-if="isLoading">
     <app-loader
       :loading-type="'feature-flag'"
       :footer-message="'Coming soon...'"
@@ -13,6 +13,7 @@
 
     <panel-group :title="'Blogs'">
       <post-panel
+        :destination="'/purpose'"
         :title="'The Purpose of this Website'"
         :date="'22-03-2023'"
         :description="description"
@@ -33,7 +34,14 @@ import PostPanel from "../Panels/PostPanel.vue"
 
 import { parseErrorMessage } from "../../helpers/errorHandler"
 
-import * as configCat from "configcat-js";
+import {
+  PollingMode,
+  LogLevel,
+  createConsoleLogger,
+  getClient,
+  User,
+  type IConfigCatClient
+} from "configcat-js";
 
 export default {
   name: "App",
@@ -50,7 +58,7 @@ export default {
   data() {
     return {
       date: Date.now.toString(),
-      isProductionEnabled: false,
+      isMainApplicationEnabled: false,
       loading: true
     }
   },
@@ -62,6 +70,14 @@ export default {
         ambitions and reflections on previous experiences as well as a general
         summary of who I am.
       `.trim()
+    },
+
+    isLoading() {
+      if (this.isMainApplicationEnabled || this.loading) {
+        return true
+      }
+
+      return false
     }
   },
 
@@ -71,19 +87,17 @@ export default {
 
   methods: {
     async getFeatureFlagStatus() {
-      const SDK_KEY = import.meta.env.VITE_VUE_APP_CONFIGCAT_SDK
-      const pollyMode = configCat.PollingMode.AutoPoll
-      const logLevel = configCat.LogLevel.Info
-      const logger = { logger: configCat.createConsoleLogger(logLevel) }
-      const configCatClient = configCat.getClient(SDK_KEY, pollyMode, logger)
-      const user = new configCat.User(import.meta.env.VITE_USER_ID)
+      const { VITE_CONFIGCAT_KEY, VITE_USER_ID, MODE } = import.meta.env
+      const logger = { logger: createConsoleLogger(LogLevel.Info) }
+      const client = getClient(VITE_CONFIGCAT_KEY, PollingMode.AutoPoll, logger)
+      const user = new User(VITE_USER_ID)
 
       try {
-        this.isProductionEnabled = await configCatClient.getValueAsync(
-          "productionEnabled",
-          false,
-          user
-        )
+        if (MODE === "development") {
+          this.isMainApplicationEnabled = true
+        } else {
+          this.isMainApplicationEnabled = await this.getValueAsync(client, user)
+        }
       } catch(error) {
         const errorMessage = `
           There was an issue evaluating your feature flag. Error message: 
@@ -96,12 +110,8 @@ export default {
       }
     },
 
-    isLoading(flagValue: boolean) {
-      if (!flagValue || this.loading) {
-        return true
-      }
-
-      return false
+    async getValueAsync(client: IConfigCatClient, user: User) {
+      return await client.getValueAsync("isMainApplicationEnabled", false, user)
     }
   }
 }
@@ -120,4 +130,4 @@ export default {
   padding-right: 1rem;
   color: #eee;
 }
-</style>../../errorHandler../../helpers/errorHandler
+</style>
