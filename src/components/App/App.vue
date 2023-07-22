@@ -87,16 +87,15 @@ export default {
 
   methods: {
     async getFeatureFlagStatus() {
-      const { VITE_CONFIGCAT_KEY, VITE_USER_ID, MODE } = import.meta.env
+      const { VITE_CONFIGCAT_KEY, MODE } = import.meta.env
       const logger = { logger: createConsoleLogger(LogLevel.Info) }
       const client = getClient(VITE_CONFIGCAT_KEY, PollingMode.AutoPoll, logger)
-      const user = new User(VITE_USER_ID)
 
       try {
         if (MODE === "development") {
           this.isMainApplicationEnabled = true
         } else {
-          this.isMainApplicationEnabled = await this.getValueAsync(client, user)
+          this.isMainApplicationEnabled = await this.getValueAsync(client)
         }
       } catch(error) {
         const errorMessage = `
@@ -110,8 +109,8 @@ export default {
       }
     },
 
-    async getValueAsync(client: IConfigCatClient, user: User) {
-      return await client.getValueAsync("isMainApplicationEnabled", false, user)
+    async getValueAsync(client: IConfigCatClient) {
+      return await client.getValueAsync("isMainApplicationEnabled", false)
     }
   }
 }
