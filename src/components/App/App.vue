@@ -39,7 +39,6 @@ import {
   LogLevel,
   createConsoleLogger,
   getClient,
-  User,
   type IConfigCatClient
 } from "configcat-js";
 
@@ -88,14 +87,25 @@ export default {
   methods: {
     async getFeatureFlagStatus() {
       const { VITE_CONFIGCAT_KEY, MODE } = import.meta.env
-      const logger = { logger: createConsoleLogger(LogLevel.Info) }
-      const client = getClient(VITE_CONFIGCAT_KEY, PollingMode.AutoPoll, logger)
 
       try {
         if (MODE === "development") {
           this.isMainApplicationEnabled = true
         } else {
+          const logger = { logger: createConsoleLogger(LogLevel.Info) }
+          const client = getClient(
+            VITE_CONFIGCAT_KEY, 
+            PollingMode.AutoPoll, 
+            logger
+          )
+
           this.isMainApplicationEnabled = await this.getValueAsync(client)
+          
+          console.log(MODE)
+          console.log(`
+            Mode: ${MODE} and isMainApplicationEnabled: 
+            ${this.isMainApplicationEnabled}
+          `)
         }
       } catch(error) {
         const errorMessage = `
