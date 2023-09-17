@@ -5,17 +5,17 @@
 		</div>
 
 		<div class="app-header__navigation">
-			<div class="app-header__navigation-icon">
+			<router-link to="/about" class="app-header__navigation-icon">
 				<img src="/icons/blog.svg" alt="">
-			</div>
+			</router-link>
 
-			<div class="app-header__navigation-icon">
+			<router-link to="/contacts" class="app-header__navigation-icon">
 				<img src="/icons/mail.svg" alt="">
-			</div>
+			</router-link>
 
-			<div class="app-header__navigation-icon">
+			<router-link to="/" class="app-header__navigation-icon">
 				<img src="/favicon.svg" alt="" style="fil">
-			</div>
+			</router-link>
 		</div>
 	</div>
 </template>

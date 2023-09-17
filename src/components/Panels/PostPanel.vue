@@ -1,6 +1,6 @@
 <template>
-	<button class="post-panel">
-		<div href="/" class="post-panel__header">
+	<router-link :to="destination" class="post-panel">
+		<div class="post-panel__header">
 			<label class="post-panel__title">
 				<div class="post-panel__title-icon" />
 
@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="post-panel__description" v-html="description" />
-	</button>
+	</router-link>
 </template>
 
 <script lang="ts">
@@ -36,6 +36,11 @@ export default {
 		description: {
 			type: String,
 			required: true
+		},
+
+		destination: {
+			type: String,
+			required: true
 		}
 	}
 }
@@ -47,12 +52,12 @@ export default {
 	flex-direction: column;
 	border-radius: 5px;
 	padding: 10px;
+	text-decoration: none;
 
 	&__header {
 		display: flex;
 		margin-bottom: 20px;
 		justify-content: space-between;
-		text-decoration: none;
 		color: #eee;
 	}
 
@@ -86,6 +91,7 @@ export default {
 
 	&__description {
 		text-align: justify;
+		color: #eee;
 	}
 
 	&:hover {
